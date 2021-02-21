@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion versions.compile_sdk_version
@@ -35,4 +36,7 @@ android {
 
 dependencies {
     implementation project(":dino-library")
+
+    implementation deps.hilt.android
+    kapt deps.hilt.compiler
 }
