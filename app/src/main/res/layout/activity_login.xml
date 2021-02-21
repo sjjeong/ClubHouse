@@ -24,13 +24,15 @@
             android:imeOptions="actionSend"
             android:inputType="phone"
             android:lines="1"
+            android:enabled="@{!vm.isSentCode}"
             android:text="@={vm.phoneNumber}" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{() -> vm.sendCode()}"
-            android:text="@{vm.isSentCode ? @string/resend_code : @string/send_code}" />
+            android:text="@{vm.isSentCode ? @string/resend_code : @string/send_code}"
+            android:textColor="@android:color/white" />
 
         <EditText
             android:layout_width="match_parent"
@@ -47,6 +49,7 @@
             android:enabled="@{!TextUtils.isEmpty(vm.code)}"
             android:onClick="@{() -> vm.next()}"
             android:text="Next"
+            android:textColor="@android:color/white"
             bind:visible="@{vm.isSentCode}" />
 
     </LinearLayout>
