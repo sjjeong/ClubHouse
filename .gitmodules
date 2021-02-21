@@ -1,0 +1,3 @@
+[submodule "dino-library"]
+	path = dino-library
+	url = https://github.com/sjjeong/dino-library.git
