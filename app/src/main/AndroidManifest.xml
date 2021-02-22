@@ -27,6 +27,9 @@
         <activity android:name=".ui.waitlist.WaitlistActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
         <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.chat.ChatActivity" />
+
+        <service android:name=".voice.VoiceService" />
     </application>
 
 </manifest>

@@ -39,4 +39,7 @@ dependencies {
 
     implementation deps.hilt.android
     kapt deps.hilt.compiler
+
+    implementation 'io.agora.rtc:voice-sdk:3.3.0'
+    implementation 'com.pubnub:pubnub-gson:4.33.3'
 }

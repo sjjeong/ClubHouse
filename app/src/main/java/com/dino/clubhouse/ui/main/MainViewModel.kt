@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.dino.clubhouse.remote.model.ChannelListResponse
 import com.dino.clubhouse.repository.remote.ChannelRemoteDataSource
 import com.dino.library.ui.DinoViewModel
+import com.dino.library.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,6 +18,9 @@ class MainViewModel @Inject constructor(
 
     private val _channelList = MutableLiveData<List<ChannelListResponse.Channel>>()
     val channelList: LiveData<List<ChannelListResponse.Channel>> = _channelList
+
+    private val _showChatEvent = MutableLiveData<Event<String>>()
+    val showChatEvent: LiveData<Event<String>> = _showChatEvent
 
     init {
         loadChannelList()
@@ -32,6 +36,10 @@ class MainViewModel @Inject constructor(
 
     fun refresh() {
         loadChannelList()
+    }
+
+    fun selectChannel(channel: String) {
+        _showChatEvent.value = Event(channel)
     }
 
 }

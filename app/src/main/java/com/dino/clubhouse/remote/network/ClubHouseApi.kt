@@ -4,8 +4,9 @@ import android.app.Application
 import android.os.LocaleList
 import com.dino.clubhouse.pref.PrefManager
 import com.dino.clubhouse.remote.model.ChannelListResponse
-import com.dino.clubhouse.remote.model.CompletePhoneNumberAuthResponse
+import com.dino.clubhouse.remote.model.ChannelResponse
 import com.dino.clubhouse.remote.model.CommonResponse
+import com.dino.clubhouse.remote.model.CompletePhoneNumberAuthResponse
 import com.dino.library.BuildConfig
 import com.google.gson.Gson
 import dagger.Module
@@ -79,10 +80,10 @@ interface ClubHouseApi {
     @POST("get_channel")
     suspend fun getChannel(
         @Field("channel") channel: String,
-    )
+    ): ChannelResponse
 
     @GET("get_channels")
-    suspend fun getChannels() : ChannelListResponse
+    suspend fun getChannels(): ChannelListResponse
 
     @GET("get_followers")
     suspend fun getFollowers(
@@ -110,7 +111,7 @@ interface ClubHouseApi {
         @Field("channel") channel: String,
         @Field("attribution_source") attributionSource: String = "feed",
         @Field("attribution_details") attributionDetails: String = "eyJpc19leHBsb3JlIjpmYWxzZSwicmFuayI6MX0=",
-    )
+    ): ChannelResponse
 
     @FormUrlEncoded
     @POST("leave_channel")

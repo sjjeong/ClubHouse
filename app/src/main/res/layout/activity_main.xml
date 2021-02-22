@@ -34,6 +34,7 @@
                     bind:dino_itemLayout="@{@layout/item_channel}"
                     bind:dino_itemSpace="@{`4dp`}"
                     bind:dino_items="@{vm.channelList}"
+                    bind:dino_vm="@{vm}"
                     tools:itemCount="3"
                     tools:listitem="@layout/item_channel" />
 

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ChannelListResponse(
     @SerializedName("channels")
-    val channels: List<Channel>
+    val channels: List<Channel>,
 ) {
     data class Channel(
         @SerializedName("channel")
@@ -35,7 +35,7 @@ data class ChannelListResponse(
         @SerializedName("url")
         val url: String,
         @SerializedName("users")
-        val users: List<User>
+        val users: List<User>,
     ) {
         data class User(
             @SerializedName("is_followed_by_speaker")
@@ -53,7 +53,7 @@ data class ChannelListResponse(
             @SerializedName("time_joined_as_speaker")
             val timeJoinedAsSpeaker: String,
             @SerializedName("user_id")
-            val userId: Int
+            val userId: String,
         )
     }
 }
