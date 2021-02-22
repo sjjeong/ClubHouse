@@ -25,12 +25,12 @@ data class CompletePhoneNumberAuthResponse(
 ) {
     data class UserProfile(
         @SerializedName("name")
-        val name: String,
+        val name: String?,
         @SerializedName("photo_url")
-        val photoUrl: String,
+        val photoUrl: String?,
         @SerializedName("user_id")
         val userId: String,
         @SerializedName("username")
-        val username: String,
+        val username: String?,
     )
 }

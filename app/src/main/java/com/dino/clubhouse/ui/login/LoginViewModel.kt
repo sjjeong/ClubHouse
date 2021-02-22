@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dino.clubhouse.repository.remote.AuthRemoteDataSource
 import com.dino.library.ui.DinoViewModel
+import com.dino.library.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,6 +21,16 @@ class LoginViewModel @Inject constructor(
 
     private val _isSentCode = MutableLiveData(false)
     val isSentCode: LiveData<Boolean> = _isSentCode
+
+    private val _showWaitlistEvent = MutableLiveData<Event<Unit>>()
+    val showWaitlistEvent: LiveData<Event<Unit>> = _showWaitlistEvent
+
+    private val _showRegisterEvent = MutableLiveData<Event<Unit>>()
+    val showRegisterEvent: LiveData<Event<Unit>> = _showRegisterEvent
+
+    private val _showMainEvent = MutableLiveData<Event<Unit>>()
+    val showMainEvent: LiveData<Event<Unit>> = _showMainEvent
+
 
     fun sendCode() {
         val isSentCode = isSentCode.value ?: false
@@ -71,7 +82,18 @@ class LoginViewModel @Inject constructor(
             && code.isNotBlank()
         ) {
             viewModelScope.launch {
-                authRemoteDataSource.completePhoneNumberAuth(phoneNumber,code)
+                val data = authRemoteDataSource.completePhoneNumberAuth(phoneNumber, code)
+                when {
+                    data.isWaitlisted ?: false -> {
+                        _showWaitlistEvent.value = Event(Unit)
+                    }
+                    data.userProfile?.username.isNullOrEmpty() -> {
+                        _showRegisterEvent.value = Event(Unit)
+                    }
+                    else -> {
+                        _showMainEvent.value = Event(Unit)
+                    }
+                }
             }
         }
     }
