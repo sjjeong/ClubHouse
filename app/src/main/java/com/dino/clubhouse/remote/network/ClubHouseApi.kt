@@ -4,7 +4,7 @@ import android.app.Application
 import android.os.LocaleList
 import com.dino.clubhouse.pref.PrefManager
 import com.dino.clubhouse.remote.model.CompletePhoneNumberAuthResponse
-import com.dino.clubhouse.remote.model.StartPhoneNumberAuthResponse
+import com.dino.clubhouse.remote.model.CommonResponse
 import com.dino.library.BuildConfig
 import com.google.gson.Gson
 import dagger.Module
@@ -25,13 +25,13 @@ interface ClubHouseApi {
     @POST("start_phone_number_auth")
     suspend fun startPhoneNumberAuth(
         @Field("phone_number") phoneNumber: String,
-    ): StartPhoneNumberAuthResponse
+    ): CommonResponse
 
     @FormUrlEncoded
     @POST("resend_phone_number_auth")
     suspend fun resendPhoneNumberAuth(
         @Field("phone_number") phoneNumber: String,
-    )
+    ): CommonResponse
 
     @FormUrlEncoded
     @POST("complete_phone_number_auth")

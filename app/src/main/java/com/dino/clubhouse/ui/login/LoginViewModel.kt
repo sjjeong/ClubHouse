@@ -31,6 +31,19 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun resendPhoneNumberAuth() {
+        val phoneNumber = phoneNumber.value ?: return
+        if (phoneNumber.isNotBlank()) {
+            viewModelScope.launch {
+                try {
+                    val response = authRemoteDataSource.resendPhoneNumberAuth(phoneNumber)
+                    if (response.success) {
+                        _isSentCode.value = true
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
 
     }
 
