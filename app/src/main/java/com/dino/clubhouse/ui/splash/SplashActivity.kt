@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.dino.clubhouse.R
 import com.dino.clubhouse.databinding.ActivitySplashBinding
 import com.dino.clubhouse.ui.login.LoginActivity
+import com.dino.clubhouse.ui.main.MainActivity
 import com.dino.library.ext.startActivity
 import com.dino.library.ui.DinoActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,6 +15,9 @@ class SplashActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity<LoginActivity>()
+        viewModel {
+            showMainEvent eventObserve { startActivity<MainActivity>() }
+            showLoginEvent eventObserve { startActivity<LoginActivity>() }
+        }
     }
 }

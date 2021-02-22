@@ -3,6 +3,7 @@ package com.dino.clubhouse.remote.network
 import android.app.Application
 import android.os.LocaleList
 import com.dino.clubhouse.pref.PrefManager
+import com.dino.clubhouse.remote.model.ChannelListResponse
 import com.dino.clubhouse.remote.model.CompletePhoneNumberAuthResponse
 import com.dino.clubhouse.remote.model.CommonResponse
 import com.dino.library.BuildConfig
@@ -81,7 +82,7 @@ interface ClubHouseApi {
     )
 
     @GET("get_channels")
-    suspend fun getChannels()
+    suspend fun getChannels() : ChannelListResponse
 
     @GET("get_followers")
     suspend fun getFollowers(
