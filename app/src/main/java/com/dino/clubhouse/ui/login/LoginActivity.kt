@@ -12,16 +12,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LoginActivity : DinoActivity<ActivityLoginBinding, LoginViewModel>(R.layout.activity_login) {
 
-    private val testViewModel by viewModels<LoginViewModel>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding {
-            vm = testViewModel
-            lifecycleOwner = this@LoginActivity
-        }
-    }
-
     companion object {
 
         fun startActivity(context: Context) {
