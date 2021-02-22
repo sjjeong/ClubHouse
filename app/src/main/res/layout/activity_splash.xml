@@ -6,13 +6,13 @@
     <data>
         <variable
             name="vm"
-            type="com.dino.clubhouse.ui.main.MainViewModel" />
+            type="com.dino.clubhouse.ui.splash.SplashViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.MainActivity">
+        tools:context=".ui.splash.SplashActivity">
 
         <TextView
             android:layout_width="wrap_content"
