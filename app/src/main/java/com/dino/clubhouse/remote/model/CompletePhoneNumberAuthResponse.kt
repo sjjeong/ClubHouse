@@ -29,7 +29,7 @@ data class CompletePhoneNumberAuthResponse(
         @SerializedName("photo_url")
         val photoUrl: String,
         @SerializedName("user_id")
-        val userId: Int,
+        val userId: String,
         @SerializedName("username")
         val username: String,
     )

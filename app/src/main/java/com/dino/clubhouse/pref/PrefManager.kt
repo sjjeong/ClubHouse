@@ -40,11 +40,11 @@ class PrefManager @Inject constructor(application: Application) {
                 putString(KEY_USER_TOKEN, value)
             }
         }
-    var waitlisted: String
-        get() = sharedPreferences.getString(KEY_WAITLISTED, "") ?: ""
+    var waitlisted: Boolean
+        get() = sharedPreferences.getBoolean(KEY_WAITLISTED, false) ?: false
         set(value) {
             sharedPreferences.edit {
-                putString(KEY_WAITLISTED, value)
+                putBoolean(KEY_WAITLISTED, value)
             }
         }
 

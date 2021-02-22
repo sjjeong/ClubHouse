@@ -1,5 +1,6 @@
 package com.dino.clubhouse.remote.impl
 
+import com.dino.clubhouse.pref.PrefManager
 import com.dino.clubhouse.remote.model.CommonResponse
 import com.dino.clubhouse.remote.model.CompletePhoneNumberAuthResponse
 import com.dino.clubhouse.remote.network.ClubHouseApi
@@ -11,7 +12,10 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class AuthRemoteDataSourceImpl @Inject constructor(private val clubHouseApi: ClubHouseApi) :
+class AuthRemoteDataSourceImpl @Inject constructor(
+    private val clubHouseApi: ClubHouseApi,
+    private val prefManager: PrefManager,
+) :
     AuthRemoteDataSource {
     override suspend fun startPhoneNumberAuth(phoneNumber: String): CommonResponse {
         return clubHouseApi.startPhoneNumberAuth(phoneNumber)
@@ -25,7 +29,11 @@ class AuthRemoteDataSourceImpl @Inject constructor(private val clubHouseApi: Clu
         phoneNumber: String,
         verificationCode: String,
     ): CompletePhoneNumberAuthResponse {
-        return clubHouseApi.completePhoneNumberAuth(phoneNumber, verificationCode)
+        return clubHouseApi.completePhoneNumberAuth(phoneNumber, verificationCode).also {
+            prefManager.userToken = it.authToken ?: ""
+            prefManager.userId = it.userProfile?.userId ?: ""
+            prefManager.waitlisted = it.isWaitlisted ?: false
+        }
     }
 }
 
