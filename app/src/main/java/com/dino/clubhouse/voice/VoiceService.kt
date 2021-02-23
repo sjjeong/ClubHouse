@@ -209,6 +209,14 @@ class VoiceService : Service() {
 //        })
     }
 
+    fun leaveChannel() {
+        engine?.leaveChannel()
+        channel = null
+        stopSelf()
+        pubnub?.unsubscribeAll()
+        pubnub?.destroy()
+    }
+
     interface ChannelEventListener {
         fun onUserMuteChanged(id: Int, muted: Boolean)
         fun onUserJoined(user: ChannelResponse.User?)

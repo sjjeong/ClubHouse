@@ -2,4 +2,7 @@
     <string name="app_name">ClubHouse</string>
     <string name="send_code">Send code</string>
     <string name="resend_code">Resend code</string>
+    <string name="leave">Leave</string>
+    <string name="join">Join</string>
+
 </resources>

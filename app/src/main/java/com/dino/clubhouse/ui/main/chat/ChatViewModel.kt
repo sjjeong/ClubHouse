@@ -5,6 +5,7 @@ import com.dino.clubhouse.model.ChatUserInfoPresentation
 import com.dino.clubhouse.model.TitlePresentation
 import com.dino.clubhouse.remote.model.ChannelResponse
 import com.dino.clubhouse.repository.remote.ChannelRemoteDataSource
+import com.dino.clubhouse.voice.VoiceService
 import com.dino.library.dinorecyclerview.ItemViewType
 import com.dino.library.ui.DinoViewModel
 import com.dino.library.util.Event
@@ -59,6 +60,9 @@ class ChatViewModel @Inject constructor(
         }
     }
 
+    private val _isJoined = MutableLiveData(VoiceService.channel?.channel == channelKey)
+    val isJoined: LiveData<Boolean> = _isJoined
+
     private val _joinEvent = MutableLiveData<Event<ChannelResponse>>()
     val joinEvent: LiveData<Event<ChannelResponse>> = _joinEvent
 
@@ -75,17 +79,28 @@ class ChatViewModel @Inject constructor(
         }
     }
 
-    fun join() {
-        viewModelScope.launch {
-            val channel = channelRemoteDataSource.joinChannel(channelKey)
-            _joinEvent.value = Event(channel)
+    fun joinAndLeave() {
+        val isJoined = isJoined.value ?: false
+        if (isJoined) {
+            leave()
+        } else {
+            join()
         }
     }
 
-    fun leave() {
+    private fun join() {
+        viewModelScope.launch {
+            val channel = channelRemoteDataSource.joinChannel(channelKey)
+            _joinEvent.value = Event(channel)
+            _isJoined.value = true
+        }
+    }
+
+    private fun leave() {
         viewModelScope.launch {
             channelRemoteDataSource.leaveChannel(channelKey)
             _leaveEvent.value = Event(Unit)
+            _isJoined.value = false
         }
     }
 

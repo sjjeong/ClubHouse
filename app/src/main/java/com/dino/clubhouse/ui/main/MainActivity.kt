@@ -43,7 +43,7 @@ class MainActivity : DinoActivity<ActivityMainBinding, MainViewModel>(R.layout.a
     }
 
     fun leave() {
-        // TODO: 2021/02/23 나가기 기능 구현
+        VoiceService.instance?.leaveChannel()
     }
 
 }
