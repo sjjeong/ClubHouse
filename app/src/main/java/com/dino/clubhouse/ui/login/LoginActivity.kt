@@ -8,7 +8,7 @@ import com.dino.clubhouse.ui.waitlist.WaitlistActivity
 import com.dino.library.ext.startActivity
 import com.dino.library.ui.DinoActivity
 import dagger.hilt.android.AndroidEntryPoint
-import com.dino.clubhouse.ui.main.MainActivity as MainActivity1
+import com.dino.clubhouse.ui.main.home.HomeActivity as MainActivity1
 
 @AndroidEntryPoint
 class LoginActivity : DinoActivity<ActivityLoginBinding, LoginViewModel>(R.layout.activity_login) {

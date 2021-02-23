@@ -41,7 +41,7 @@ class PrefManager @Inject constructor(application: Application) {
             }
         }
     var waitlisted: Boolean
-        get() = sharedPreferences.getBoolean(KEY_WAITLISTED, false) ?: false
+        get() = sharedPreferences.getBoolean(KEY_WAITLISTED, false)
         set(value) {
             sharedPreferences.edit {
                 putBoolean(KEY_WAITLISTED, value)

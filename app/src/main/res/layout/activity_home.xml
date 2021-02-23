@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="com.dino.clubhouse.ui.main.MainViewModel" />
+            type="com.dino.clubhouse.ui.main.home.HomeViewModel" />
     </data>
 
     <FrameLayout

@@ -9,5 +9,5 @@ data class StartPhoneNumberAuthResponse(
     @SerializedName("is_blocked")
     val isBlocked: Boolean?,
     @SerializedName("success")
-    val success: Boolean
+    val success: Boolean,
 )

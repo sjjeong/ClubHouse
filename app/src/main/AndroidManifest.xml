@@ -26,8 +26,8 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.waitlist.WaitlistActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
-        <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.chat.ChatActivity" />
+        <activity android:name=".ui.main.home.HomeActivity" />
+        <activity android:name="com.dino.clubhouse.ui.main.chat.ChatActivity" />
 
         <service android:name=".voice.VoiceService" />
     </application>

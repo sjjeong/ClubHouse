@@ -7,5 +7,4 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class WaitlistActivity :
-    DinoActivity<ActivityWaitlistBinding, WaitlistViewModel>(R.layout.activity_waitlist) {
-}
+    DinoActivity<ActivityWaitlistBinding, WaitlistViewModel>(R.layout.activity_waitlist)

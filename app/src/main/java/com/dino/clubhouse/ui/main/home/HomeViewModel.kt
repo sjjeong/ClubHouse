@@ -1,4 +1,4 @@
-package com.dino.clubhouse.ui.main
+package com.dino.clubhouse.ui.main.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val channelRemoteDataSource: ChannelRemoteDataSource,
 ) : DinoViewModel() {
 

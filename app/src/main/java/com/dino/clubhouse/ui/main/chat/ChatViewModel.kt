@@ -1,4 +1,4 @@
-package com.dino.clubhouse.ui.chat
+package com.dino.clubhouse.ui.main.chat
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

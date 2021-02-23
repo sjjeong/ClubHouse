@@ -5,5 +5,4 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class WaitlistViewModel @Inject constructor(): DinoViewModel() {
-}
+class WaitlistViewModel @Inject constructor() : DinoViewModel()

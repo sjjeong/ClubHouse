@@ -1,16 +1,16 @@
-package com.dino.clubhouse.ui.main
+package com.dino.clubhouse.ui.main.home
 
 import android.os.Bundle
 import com.dino.clubhouse.R
-import com.dino.clubhouse.databinding.ActivityMainBinding
-import com.dino.clubhouse.ui.chat.ChatActivity
-import com.dino.clubhouse.ui.chat.ChatViewModel
+import com.dino.clubhouse.databinding.ActivityHomeBinding
+import com.dino.clubhouse.ui.main.chat.ChatActivity
+import com.dino.clubhouse.ui.main.chat.ChatViewModel
 import com.dino.library.ext.startActivity
 import com.dino.library.ui.DinoActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : DinoActivity<ActivityMainBinding, MainViewModel>(R.layout.activity_main) {
+class HomeActivity : DinoActivity<ActivityHomeBinding, HomeViewModel>(R.layout.activity_home) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

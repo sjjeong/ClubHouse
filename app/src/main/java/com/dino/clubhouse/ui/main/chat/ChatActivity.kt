@@ -1,4 +1,4 @@
-package com.dino.clubhouse.ui.chat
+package com.dino.clubhouse.ui.main.chat
 
 import android.content.Intent
 import android.os.Build

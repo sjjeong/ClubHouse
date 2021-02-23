@@ -67,6 +67,6 @@ data class ChannelResponse(
         @SerializedName("user_id")
         val userId: String,
         @SerializedName("username")
-        val username: String
+        val username: String,
     )
 }
