@@ -1,11 +1,11 @@
 package com.dino.clubhouse.ui.main.chat
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.dino.clubhouse.model.ChatUserInfoPresentation
+import com.dino.clubhouse.model.TitlePresentation
 import com.dino.clubhouse.remote.model.ChannelResponse
 import com.dino.clubhouse.repository.remote.ChannelRemoteDataSource
+import com.dino.library.dinorecyclerview.ItemViewType
 import com.dino.library.ui.DinoViewModel
 import com.dino.library.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,6 +22,42 @@ class ChatViewModel @Inject constructor(
 
     private val _channel = MutableLiveData<ChannelResponse>()
     val channel: LiveData<ChannelResponse> = _channel
+
+    var speakersCount = 0
+    var followedBySpeakersCount = 0
+    var othersCount = 0
+
+    val userList: LiveData<List<ItemViewType>> = channel.map { channel ->
+        val speakers = channel.users
+            .filter { it.isSpeaker }
+            .map { ChatUserInfoPresentation(it) }
+            .also { speakersCount = it.size }
+
+        val followedBySpeakers = channel.users
+            .filter { !it.isSpeaker && it.isFollowedBySpeaker }
+            .map { ChatUserInfoPresentation(it) }
+            .also { followedBySpeakersCount = it.size }
+
+        val others = channel.users
+            .filterNot { it.isSpeaker || it.isFollowedBySpeaker }
+            .map { ChatUserInfoPresentation(it) }
+            .also { othersCount = it.size }
+
+        mutableListOf<ItemViewType>().apply {
+            if (speakers.isNotEmpty()) {
+                add(TitlePresentation("Speakers"))
+                addAll(speakers)
+            }
+            if (followedBySpeakers.isNotEmpty()) {
+                add(TitlePresentation("Followed by the speakers"))
+                addAll(followedBySpeakers)
+            }
+            if (others.isNotEmpty()) {
+                add(TitlePresentation("Others in the room"))
+                addAll(others)
+            }
+        }
+    }
 
     private val _joinEvent = MutableLiveData<Event<ChannelResponse>>()
     val joinEvent: LiveData<Event<ChannelResponse>> = _joinEvent
