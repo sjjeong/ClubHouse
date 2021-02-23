@@ -14,8 +14,17 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : DinoActivity<ActivityMainBinding, MainViewModel>(R.layout.activity_main) {
 
-    fun showChat() {
-//        startActivity<ChatFragment>(ChatViewModel.KEY_CHANNEL to it)
+    fun showChat(channelKey: String) {
+        with(supportFragmentManager) {
+            val fragment = findFragmentByTag(channelKey)
+            if (fragment == null) {
+                commit {
+                    val newInstance = ChatFragment.newInstance(channelKey)
+                    add(binding.fcvMain.id, newInstance, channelKey)
+                    addToBackStack(channelKey)
+                }
+            }
+        }
     }
 
     fun startChat(newChannel: ChannelResponse) {
@@ -31,6 +40,10 @@ class MainActivity : DinoActivity<ActivityMainBinding, MainViewModel>(R.layout.a
                 startService(intent)
             }
         }
+    }
+
+    fun leave() {
+        // TODO: 2021/02/23 나가기 기능 구현
     }
 
 }
