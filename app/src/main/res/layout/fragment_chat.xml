@@ -5,7 +5,7 @@
 
         <variable
             name="vm"
-            type="com.dino.clubhouse.ui.chat.ChatViewModel" />
+            type="com.dino.clubhouse.ui.main.chat.ChatViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

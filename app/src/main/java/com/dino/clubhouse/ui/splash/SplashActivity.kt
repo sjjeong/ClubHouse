@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.dino.clubhouse.R
 import com.dino.clubhouse.databinding.ActivitySplashBinding
 import com.dino.clubhouse.ui.login.LoginActivity
-import com.dino.clubhouse.ui.main.home.HomeActivity
+import com.dino.clubhouse.ui.main.MainActivity
 import com.dino.library.ext.startActivity
 import com.dino.library.ui.DinoActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +23,7 @@ class SplashActivity :
 
     private fun showMain() {
         finish()
-        startActivity<HomeActivity>()
+        startActivity<MainActivity>()
     }
 
     private fun showLogin() {
